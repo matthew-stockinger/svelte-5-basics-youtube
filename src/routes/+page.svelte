@@ -1,3 +1,5 @@
+<!-- bookmark 28:05 -->
+
 <script lang="ts">
 	import Header from './Header.svelte';
 	let name = $state('Stock');
