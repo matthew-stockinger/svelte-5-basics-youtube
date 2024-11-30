@@ -8,13 +8,11 @@
 	} = $props();
 </script>
 
-<h1>Hello from {name}</h1>
-<h2>{name.replaceAll('t', 'X')}</h2>
-<h2>Your fake name is {fakeName}</h2>
+<div>
+	<h1>
+		{name ? name : 'User'}'s Form
+	</h1>
+</div>
 
 <style>
-	h1 {
-		color: red;
-		font-family: cursive;
-	}
 </style>

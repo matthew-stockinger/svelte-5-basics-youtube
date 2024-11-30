@@ -1,4 +1,4 @@
-<!-- bookmark 50:00 -->
+<!-- bookmark 57:00 -->
 
 <script lang="ts">
 	import Header from './Header.svelte';
@@ -11,12 +11,10 @@
 	});
 </script>
 
+<Header name={formState.name} />
+
 <main>
 	<p>Step: {formState.step}</p>
-
-	{#if formState.error}
-		<p class="error">{formState.error}</p>
-	{/if}
 
 	{#if formState.step === 0}
 		<div>
@@ -49,13 +47,14 @@
 			}}>Next</button
 		>
 	{/if}
+
+	{#if formState.error}
+		<p class="error">{formState.error}</p>
+	{/if}
 </main>
 
 <style>
 	.error {
-		background-color: palevioletred;
-		color: white;
-		padding: 1rem;
-		border-radius: 4px;
+		color: red;
 	}
 </style>
