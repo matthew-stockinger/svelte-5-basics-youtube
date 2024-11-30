@@ -1,10 +1,10 @@
 <script lang="ts">
 	let {
 		name,
-		fakeName = null
+		fakeName
 	}: {
 		name: string;
-		fakeName?: string | null;
+		fakeName?: string;
 	} = $props();
 </script>
 
@@ -13,4 +13,8 @@
 <h2>Your fake name is {fakeName}</h2>
 
 <style>
+	h1 {
+		color: red;
+		font-family: cursive;
+	}
 </style>
