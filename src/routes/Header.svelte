@@ -1,10 +1,8 @@
 <script lang="ts">
 	let {
-		name,
-		fakeName
+		name
 	}: {
 		name: string;
-		fakeName?: string;
 	} = $props();
 </script>
 
