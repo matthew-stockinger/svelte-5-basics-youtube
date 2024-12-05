@@ -1,4 +1,4 @@
-<!-- bookmark 81:30 -->
+<!-- bookmark 1:33:00 -->
 
 <script lang="ts">
 	import Header from './Header.svelte';
@@ -8,6 +8,8 @@
 		step: 0,
 		error: ''
 	});
+
+	$inspect(formState.step);
 
 	const QUESTIONS = [
 		{
@@ -35,6 +37,25 @@
 			formState.error = 'Please fill out the form.';
 		}
 	}
+
+	// onMount
+	$effect(() => {
+		// console.log('on mounted');
+		return () => {
+			// when unmounted or destroyed.
+			// also, before effect reruns.
+			// console.log('on unmounted');
+		};
+	});
+
+	// since we're using a reactive value, formState, this will rerun every time
+	// formState.step changes.
+	$effect(() => {
+		// console.log('formState', formState.step);
+		return () => {
+			// console.log('before formState reruns', formState.step);
+		};
+	});
 </script>
 
 <Header name={formState.answers.name} />
