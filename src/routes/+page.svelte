@@ -1,6 +1,7 @@
 <!-- bookmark 1:33:00 -->
 
 <script lang="ts">
+	import { blur } from 'svelte/transition';
 	import Header from './Header.svelte';
 
 	let formState = $state({
@@ -8,8 +9,6 @@
 		step: 0,
 		error: ''
 	});
-
-	$inspect(formState.step);
 
 	const QUESTIONS = [
 		{
@@ -69,7 +68,15 @@
 
 	{#each QUESTIONS as question, i (question.id)}
 		{#if i === formState.step}
-			{@render formStep(question)}
+			<div transition:blur>
+				{@render formStep(question)}
+			</div>
+			<!-- <div
+				in:fly={{ x: 200, duration: 200, opacity: 0, delay: 200 }}
+				out:fly={{ x: -200, duration: 200, opacity: 0 }}
+			>
+				{@render formStep(question)}
+			</div> -->
 		{/if}
 	{/each}
 
