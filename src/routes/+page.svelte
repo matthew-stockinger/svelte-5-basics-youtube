@@ -1,6 +1,7 @@
-<!-- bookmark 81:30 -->
+<!-- bookmark 1:33:00 -->
 
 <script lang="ts">
+	import { blur } from 'svelte/transition';
 	import Header from './Header.svelte';
 
 	let formState = $state({
@@ -35,6 +36,25 @@
 			formState.error = 'Please fill out the form.';
 		}
 	}
+
+	// onMount
+	$effect(() => {
+		// console.log('on mounted');
+		return () => {
+			// when unmounted or destroyed.
+			// also, before effect reruns.
+			// console.log('on unmounted');
+		};
+	});
+
+	// since we're using a reactive value, formState, this will rerun every time
+	// formState.step changes.
+	$effect(() => {
+		// console.log('formState', formState.step);
+		return () => {
+			// console.log('before formState reruns', formState.step);
+		};
+	});
 </script>
 
 <Header name={formState.answers.name} />
@@ -48,7 +68,15 @@
 
 	{#each QUESTIONS as question, i (question.id)}
 		{#if i === formState.step}
-			{@render formStep(question)}
+			<div transition:blur>
+				{@render formStep(question)}
+			</div>
+			<!-- <div
+				in:fly={{ x: 200, duration: 200, opacity: 0, delay: 200 }}
+				out:fly={{ x: -200, duration: 200, opacity: 0 }}
+			>
+				{@render formStep(question)}
+			</div> -->
 		{/if}
 	{/each}
 
